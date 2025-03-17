@@ -9,4 +9,5 @@ export default defineConfig({
       input: "public/index.html",
     },
   },
+  base: "/ipf/", // Ensure correct path for GitHub Pages or Netlify
 });
