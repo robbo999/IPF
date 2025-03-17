@@ -1,7 +1,18 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
+
+const Button = ({ children, ...props }) => (
+  <button {...props} className="bg-blue-600 text-white font-semibold py-3 px-5 rounded-md w-full hover:bg-blue-700 shadow-md transition-all">
+    {children}
+  </button>
+);
+
+const Textarea = (props) => (
+  <textarea {...props} className="border p-3 w-full rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+);
+
+const Input = (props) => (
+  <input {...props} className="border p-3 w-full rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+);
 
 export default function IncidentProforma() {
   const [incident, setIncident] = useState({
@@ -31,9 +42,9 @@ export default function IncidentProforma() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-gray-100 shadow-lg rounded-lg">
-      <h1 className="text-2xl font-bold mb-6 text-center">Incident Proforma Generator</h1>
-      <div className="grid grid-cols-2 gap-4">
+    <div className="p-8 max-w-3xl mx-auto bg-gray-100 shadow-lg rounded-xl">
+      <h1 className="text-4xl font-bold mb-8 text-center text-black">Incident Proforma Generator</h1>
+      <div className="flex flex-col gap-6">
         <Input name="category" placeholder="Category (e.g., D4, C2)" onChange={handleChange} />
         <Input name="title" placeholder="Incident Title" onChange={handleChange} />
         <Input name="startTime" placeholder="Incident Start Time" onChange={handleChange} />
@@ -44,9 +55,9 @@ export default function IncidentProforma() {
         <Input name="serviceStrategy" placeholder="Train Service Strategy" onChange={handleChange} />
         <Input name="responseStaff" placeholder="Response Staff and ETAs" onChange={handleChange} />
       </div>
-      <Textarea name="info" placeholder="Incident Information" onChange={handleChange} className="mt-4 w-full h-32" />
-      <Textarea value={generateProforma()} readOnly className="mt-4 w-full h-40 bg-gray-200" />
-      <Button onClick={() => navigator.clipboard.writeText(generateProforma())} className="mt-4">Copy to Clipboard</Button>
+      <Textarea name="info" placeholder="Incident Information" onChange={handleChange} className="mt-6 w-full h-40 border border-gray-400 rounded-md shadow-sm" />
+      <Textarea value={generateProforma()} readOnly className="mt-6 w-full h-48 bg-gray-200 border border-gray-400 rounded-md shadow-sm" />
+      <Button onClick={() => navigator.clipboard.writeText(generateProforma())} className="mt-6">Copy to Clipboard</Button>
     </div>
   );
 }
