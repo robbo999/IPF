@@ -5,9 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: "dist",
-    rollupOptions: {
-      input: "public/index.html",
-    },
   },
-  base: "/ipf/", // Ensure correct path for GitHub Pages or Netlify
+  base: "./", // Ensures correct path resolution
 });
+
